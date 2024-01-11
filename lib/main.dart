@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:note_it/features/note_app_home/screen/note_app_home_page.dart';
 import 'package:note_it/utils/routes.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
+
 
 void main() {
+  usePathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -13,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -30,8 +34,9 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        scaffoldBackgroundColor: Colors.white,
       ),
       routerConfig: router,
     );

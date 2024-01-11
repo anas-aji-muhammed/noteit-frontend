@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 
 class NoteEditorScreen extends StatefulWidget {
   const NoteEditorScreen({super.key});
@@ -8,11 +9,36 @@ class NoteEditorScreen extends StatefulWidget {
 }
 
 class _NoteEditorScreenState extends State<NoteEditorScreen> {
+  final QuillController _controller = QuillController.basic();
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("editor screen"),
+    return  Scaffold(
+      body: Column(
+        children: [
+          Center(
+            child: Text("editor screen"),
+          ),
+          QuillToolbar.simple(
+            configurations: QuillSimpleToolbarConfigurations(
+              controller: _controller,
+              sharedConfigurations: const QuillSharedConfigurations(
+                locale: Locale('en'),
+              ),
+            ),
+          ),
+          Expanded(
+            child: QuillEditor.basic(
+              configurations: QuillEditorConfigurations(
+                controller: _controller,
+                readOnly: false,
+                sharedConfigurations: const QuillSharedConfigurations(
+                  locale: Locale('en'),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
